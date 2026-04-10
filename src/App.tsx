@@ -154,13 +154,23 @@ export default function App() {
                   href: "https://fintech-internship-serviceplanning.vercel.app"
                 }
               ].map((item, idx) => (
-                <a key={idx} href={item.href} target="_blank" rel="noopener noreferrer" className={`bg-white p-6 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow ${idx === 0 ? 'md:border-r md:border-gray-200 md:rounded-r-none' : 'md:border-l-0 md:rounded-l-none'}`}>
+                <motion.a 
+                  key={idx} 
+                  href={item.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className={`bg-white p-6 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow ${idx === 0 ? 'md:border-r md:border-gray-200 md:rounded-r-none' : 'md:border-l-0 md:rounded-l-none'}`}
+                >
                   <div className="rounded-2xl mb-6">
                     <img src={item.image} alt={item.subtitle} className="w-full h-80 object-contain rounded-xl" referrerPolicy="no-referrer" />
                   </div>
                   <h4 className="text-xl font-bold mb-1">{item.subtitle}</h4>
                   <p className="text-gray-600">교육일정 | {item.period}</p>
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -234,7 +244,14 @@ export default function App() {
                   { icon: ShieldCheck, title: "전담 매니저의 관리", desc: "학습 집중을 위한 교육 운영 매니저의 전담 케어" },
                   { icon: Coffee, title: "오피스아워 with C-Level", desc: "구름 C-Level과의 1:1 대화 시간 지원" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex gap-4">
+                  <motion.div 
+                    key={idx} 
+                    className="flex gap-4"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                  >
                     <div className="shrink-0 mt-1">
                       <item.icon className="w-6 h-6 text-blue-600" />
                     </div>
@@ -242,7 +259,7 @@ export default function App() {
                       <h4 className="font-bold mb-1">{item.title}</h4>
                       <p className="text-sm text-gray-600 leading-relaxed break-keep">{item.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -291,14 +308,21 @@ export default function App() {
               { step: "05", title: "오리엔테이션", desc: "교육 과정에 대한 세부 사항을 안내드립니다." },
               { step: "06", title: "수강 시작", desc: "커리큘럼에 따라 본격적인 학습이 시작됩니다." }
             ].map((item, idx) => (
-              <div key={idx} className="relative bg-gray-800 p-6 rounded-2xl border border-gray-700 hover:border-blue-500 transition-colors">
+              <motion.div 
+                key={idx} 
+                className="relative bg-gray-800 p-6 rounded-2xl border border-gray-700 hover:border-blue-500 transition-colors"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+              >
                 <div className="text-blue-400 font-bold text-xl mb-4">STEP {item.step}</div>
                 <h4 className="font-bold mb-2 break-keep">{item.title}</h4>
                 <p className="text-sm text-gray-400 break-keep">{item.desc}</p>
                 {idx < 5 && (
                   <ChevronRight className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 text-gray-600 z-10" />
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
